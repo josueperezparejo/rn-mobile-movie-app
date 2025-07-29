@@ -1,3 +1,4 @@
+import MovieCard from "@/components/MovieCard";
 import SearchBar from "@/components/SearchBar";
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
@@ -38,12 +39,6 @@ const Index = () => {
     </View>
   );
 
-  const renderMovieItem = ({ item }: { item: any }) => (
-    <View className="flex-row items-center gap-2 px-5">
-      <Text className="text-sm text-white">{item.title}</Text>
-    </View>
-  );
-
   if (loading) {
     return (
       <View className="flex-1 bg-primary">
@@ -71,12 +66,18 @@ const Index = () => {
       <Image source={images.bg} className="absolute z-0 w-full" />
 
       <FlatList
+        className="flex-1"
         data={movies?.results}
-        renderItem={renderMovieItem}
+        renderItem={({ item }) => <MovieCard {...item} />}
         keyExtractor={(item) => item.id}
         ListHeaderComponent={renderHeader}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 10 }}
+        contentContainerStyle={{
+          paddingBottom: 60,
+          width: "100%",
+        }}
+        numColumns={3}
+        columnWrapperStyle={{ justifyContent: "space-between" }}
       />
     </View>
   );
