@@ -73,7 +73,7 @@ const Index = () => {
         ListHeaderComponent={renderHeader}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
-          paddingBottom: 60,
+          paddingBottom: 80,
           width: "100%",
         }}
         numColumns={3}

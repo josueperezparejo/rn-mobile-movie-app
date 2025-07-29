@@ -1,8 +1,15 @@
+import { icons } from "@/constants/icons";
 import { Link } from "expo-router";
 import React, { useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const MovieCard = ({ title, poster_path, release_date, id }: Movie) => {
+const MovieCard = ({
+  title,
+  poster_path,
+  release_date,
+  id,
+  vote_average,
+}: Movie) => {
   const [imageError, setImageError] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);
 
@@ -39,9 +46,23 @@ const MovieCard = ({ title, poster_path, release_date, id }: Movie) => {
           )}
         </View>
 
-        <Text className="mt-2 text-sm font-bold text-white" numberOfLines={2}>
+        <Text className="mt-2 text-sm font-bold text-white" numberOfLines={1}>
           {title}
         </Text>
+
+        <View className="flex-row items-center justify-start gap-x-1">
+          <Image source={icons.star} className="size-4" />
+          <Text className="text-sm text-white">
+            {Math.round(vote_average) / 2}
+          </Text>
+        </View>
+
+        <View className="flex-row items-center justify-start gap-x-1">
+          <Image source={icons.play} className="size-4" />
+          <Text className="text-sm text-white">
+            {release_date.split("-")[0]}
+          </Text>
+        </View>
       </TouchableOpacity>
     </Link>
   );
